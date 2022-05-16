@@ -1,0 +1,10 @@
+<app-carousel></app-carousel>
+
+<section class="wrapper">
+  <h1>Offers</h1>
+  <div class="grid" infinite-scroll>
+    <article *ngFor="let prod of productsList">
+      <app-product-card [product]="prod"></app-product-card>
+    </article>
+  </div>
+</section>

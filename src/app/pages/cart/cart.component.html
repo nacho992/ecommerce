@@ -1,0 +1,27 @@
+<h1 class="title">Table<span>-My</span> Shopping Cart</h1>
+<section class="container fadeIn">
+  <ag-grid-angular
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    (cellValueChanged)="onCellValueChanged($event)"
+  >
+  </ag-grid-angular>
+</section>
+
+<section *ngIf="rowData.length" class="container subtotal">
+  <ul>
+    <li class="totalRow">
+      <span class="label">Subtotal</span><span class="value">${{getSubtotal()}}</span>
+    </li>
+
+    <li class="totalRow">
+      <span class="label">Shipping</span><span class="value">$5.00</span>
+    </li>
+
+    <li class="totalRow final">
+      <span class="label">Total</span><span class="value">${{getSubtotal()  + 5}}</span>
+    </li>
+    <li class="totalRow"><a href="#" class="btn continue">Send order</a></li>
+  </ul>
+</section>

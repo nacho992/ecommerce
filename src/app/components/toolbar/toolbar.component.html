@@ -1,0 +1,20 @@
+<mat-toolbar color="primary" class="mat-elevation-z6 fadeInDown">
+  <mat-toolbar-row>
+    <figure [routerLink]="['/home']">
+      <img class="img-icon" src="../../../assets/Logo.png" alt="" />
+    </figure>
+    <span>MyShop</span>
+    <span class="spacer"> </span>
+
+    <button mat-fab color="primary">
+      <mat-icon [routerLink]="['/cart']" matBadge="{{count}}" matBadgeColor="warn"><img class="icon-cart" src="../../../assets/viewCart.png" alt=""></mat-icon>
+    </button>
+
+    <button mat-fab color="primary" [routerLink]="['/home']">
+      <mat-icon>home</mat-icon>
+    </button>
+
+    <button mat-fab color="primary">login</button>
+    
+  </mat-toolbar-row>
+</mat-toolbar>

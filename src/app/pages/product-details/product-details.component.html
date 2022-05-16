@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="images">
+    <img src="{{ product.img }}" />
+  </div>
+  <div class="product">
+    <p>a short description...</p>
+    <h1>{{ product.name }}</h1>
+    <h2>${{ product.price }}</h2>
+    <p class="desc">{{ product.description }}</p>
+    <div class="buttons">
+      <button class="add" (click)="addCart()">{{getNameButton()}}</button>
+    </div>
+  </div>
+</div>

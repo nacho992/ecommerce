@@ -1,0 +1,23 @@
+<mat-card class="card">
+  <div class="imgBox">
+    <img
+      mat-card-image
+      src="{{product.img}}"
+      alt="Photo of a Shiba Inu"
+    />
+  </div>
+
+  <mat-card-content class="contentBox">
+    <h3>{{product.name}}</h3>
+    <h2 class="price">$ {{product.price}}<small>.00</small></h2>
+    <a (click)="addCart()" class="buy">{{getNameButton()}}</a>
+    <a [routerLink]="['/product-details/', product.id]" class="buy">View more</a>
+  </mat-card-content>
+
+  <div *ngIf="product.inCart" class="in-cart">
+    <button>
+      <img as="image" src="../../../assets/addCart.png" alt="add" />
+    </button>
+  </div>
+</mat-card>
+

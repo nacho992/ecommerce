@@ -1,0 +1,100 @@
+@mixin transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+  }
+.title {
+  font-weight: bold;
+  text-align: center;
+  font-size: 2em;
+  padding: 1em 0;
+  border-bottom: 1px solid #dadada;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  span {
+    font-weight: normal;
+    font-style: italic;
+    text-transform: lowercase;
+    color: #777;
+  }
+}
+.container {
+  top: 50px;
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  max-width: 1200px;
+  height: 500px;
+  box-shadow: 5px 5px 15px #cdc8c8;
+  border-radius: 10px;
+  ag-grid-angular {
+    height: 500px;
+  }
+}
+
+.subtotal {
+  height: 250px;
+  ul {
+    list-style: none;
+  }
+  li {
+    a.continue {
+      &:link,
+      &:visited {
+        text-decoration: none;
+        letter-spacing: -0.015em;
+        font-size: 1.2em;
+        padding: 1em;
+        color: #fff;
+        background: #7b1fa2;
+        font-weight: bold;
+        border-radius: 50px;
+        float: right;
+        text-align: right;
+        @include transition(all, 0.25s, linear);
+      }
+      &:after {
+        content: "\276f";
+        padding: 0.5em;
+        position: relative;
+        right: 0;
+        @include transition(all, 0.15s, linear);
+      }
+      &:hover,
+      &:focus,
+      &:active {
+        background: #af72c9;
+
+        &:after {
+          right: -10px;
+        }
+      }
+    }
+  }
+  .totalRow {
+    padding: 0.5em;
+    text-align: right;
+
+    &.final {
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+    span {
+      display: inline-block;
+      padding: 0 0 0 1em;
+      text-align: right;
+    }
+    .label {
+      font-size: 0.85em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .value {
+      letter-spacing: -0.025em;
+      width: 35%;
+    }
+  }
+}
+
