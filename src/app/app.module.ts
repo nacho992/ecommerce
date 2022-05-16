@@ -22,11 +22,13 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
 import { AgGridModule } from 'ag-grid-angular';
 import { ImageFormatterComponent } from './components/image-formatter/image-formatter.component';
 import { ButtonRendererComponent } from './components/button-renderer/button-renderer.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
 
 
 MatToolbarModule;
 @NgModule({
-  declarations: [AppComponent, ToolbarComponent, CarouselComponent, HomeComponent, CartComponent, ProductCardComponent, ProductDetailsComponent, ImageFormatterComponent, ButtonRendererComponent],
+  declarations: [AppComponent, ToolbarComponent, CarouselComponent, HomeComponent, CartComponent, ProductCardComponent, ProductDetailsComponent, ImageFormatterComponent, ButtonRendererComponent, LoginComponent, RegisterComponent],
   imports: [
     AgGridModule,
     MatSnackBarModule,
