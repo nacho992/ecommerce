@@ -1,38 +1,42 @@
-.mat-toolbar-row,
-.mat-toolbar-single-row {
-  padding: 45px 16px;
+.mat-sidenav-container {
+  background: rgba(0, 0, 0, 0.00);
 }
+
+.blank-grow {
+  flex: 1 1 auto;
+}
+
 figure {
   border-radius: 50px 50px 50px 50px;
   text-align: center;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background: #fff;
   box-shadow: 0 0px 20px rgba(255, 255, 255, 255);
   .img-icon {
     padding: 8px;
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
   }
 }
 
-.spacer {
-  flex: 1 1 auto;
+button {
+  margin: 10px;
 }
 
-.icon-cart{
-    margin: -14px;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    border-radius: 50%;
-    background: #7b1fa2;
-    &:hover{
-      box-shadow: 0 0 20px;
-      transition: 0.1s;
-    }
+.icon-cart {
+  margin: -12px 0px 0px -14px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: #7b1fa2;
+  &:hover {
+    box-shadow: 0 0 20px;
+    transition: 0.1s;
+  }
 }
 
-button{
-  margin: 20px;
+mat-nav-list > .mat-list-item{
+  margin: 14px;
 }
