@@ -27,6 +27,7 @@ img {
 }
 .login_box .right {
   width: 59%;
+  padding: 25px;
   height: 100%;
 }
 .left .top_link a {
@@ -45,7 +46,7 @@ img {
   width: 73%;
   margin: auto;
 }
-.left h3 {
+.left h3{
   text-align: center;
   margin-top: 55px;
 }
@@ -66,7 +67,7 @@ img {
 }
 .submit {
   border: none;
-  padding: 15px 70px;
+  padding: 15px 60px;
   border-radius: 8px;
   display: block;
   margin: auto;
@@ -94,8 +95,9 @@ img {
   height: 100%;
   position: relative;
   transform: translate(0%, 45%);
+  text-align: center;
 }
-.right-text h2 {
+.right-text h2 h3 span  {
   display: block;
   width: 100%;
   text-align: center;

@@ -15,6 +15,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -29,6 +30,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 
 import {
+  AbstractControl,
   FormControl,
   ReactiveFormsModule,
   ValidationErrors,
@@ -44,6 +46,21 @@ function EmailValidator(control: FormControl): ValidationErrors {
 
 function EmailValidatorMessage(err, field: FormlyFieldConfig) {
   return `"${field.formControl.value}" is not a valid Email Address`;
+}
+
+export function fieldMatchValidator(control: AbstractControl) {
+  const { password, passwordConfirm } = control.value;
+
+  // avoid displaying the message error when values are empty
+  if (!passwordConfirm || !password) {
+    return null;
+  }
+
+  if (passwordConfirm === password) {
+    return null;
+  }
+
+  return { fieldMatch: { message: 'Password Not Matching' } };
 }
 
 MatToolbarModule;
@@ -62,6 +79,7 @@ MatToolbarModule;
     RegisterComponent,
   ],
   imports: [
+    MatFormFieldModule,
     MatListModule,
     MatSidenavModule,
     MatMenuModule,
@@ -78,7 +96,11 @@ MatToolbarModule;
     ReactiveFormsModule,
     FormlyModule.forRoot({
       extras: { lazyRender: true },
-      validators: [{ name: 'email', validation: EmailValidator }],
+      validators: [
+        { name: 'email', validation: EmailValidator },
+        { name: 'fieldMatch', validation: fieldMatchValidator },
+      ],
+
       validationMessages: [{ name: 'email', message: EmailValidatorMessage }],
     }),
     FormlyMaterialModule,

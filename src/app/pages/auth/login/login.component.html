@@ -13,7 +13,7 @@
       <div class="contact">
         <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
           <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
-          <button type="submit" class="submit">login</button>
+          <button type="submit" class="submit">Sign In</button>
         </form>
       </div>
 
@@ -22,6 +22,9 @@
     <div class="right fadeIn second">
       <div class="right-text">
         <h2>MyShop</h2>
+        <h3>Welcome to login</h3>
+        <span>Don't have an account?</span>
+        <button [routerLink]="['/register']" type="submit" class="submit">Sign Up</button>
       </div>
       <div class="right-inductor">
         <img
