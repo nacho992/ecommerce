@@ -23,11 +23,11 @@
     </a>
 
     <a *ngIf="!(user$| async)">
-      <button mat-fab color="primary" [routerLink]="['/login']">login</button>
+      <button mat-fab color="primary" [routerLink]="['/login']"><mat-icon>account_box</mat-icon></button>
     </a>
 
     <a *ngIf="user$ | async as user">
-      <button mat-fab color="primary" (click)="onLogout()">logOut</button>
+      <button mat-fab color="primary" (click)="onLogout()"><mat-icon>exit_to_app</mat-icon></button>
     </a>
   </div>
 </mat-toolbar>

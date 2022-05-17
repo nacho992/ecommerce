@@ -1,4 +1,4 @@
-<section class="login">
+<section class="login mat-typography">
   <div class="login_box">
     <div class="left fadeIn first">
       <div class="top_link">
@@ -14,6 +14,9 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
           <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
           <button type="submit" class="submit">Sign In</button>
+          <div id="formFooter">
+            <a class="underlineHover" (click)="forgotPass()">Forgot Password?</a>
+          </div>
         </form>
       </div>
 
@@ -25,6 +28,8 @@
         <h3>Welcome to login</h3>
         <span>Don't have an account?</span>
         <button [routerLink]="['/register']" type="submit" class="submit">Sign Up</button>
+        <p>or</p>
+        <button (click)="onGoogleLogin()" class="submit"><img src="../../../../assets/google.png" alt=""> Sign In with google</button>
       </div>
       <div class="right-inductor">
         <img

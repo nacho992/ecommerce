@@ -49,13 +49,13 @@ export class LoginComponent implements OnInit {
     },
   ];
 
-  onSubmit(model) {
+  public onSubmit(model) {
     if (this.form.valid) {
       this.onLogin();
     }
   }
 
-  async onGoogleLogin() {
+  public async onGoogleLogin() {
     try {
       const user = await this.authSvc.loginGoogle();
       if (user) {
@@ -64,6 +64,11 @@ export class LoginComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  public forgotPass(){
+    this.authSvc.resetPassword(this.form.get('email').value)
+    this.router.navigateByUrl('home')
   }
 
   async onLogin() {

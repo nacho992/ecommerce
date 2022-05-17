@@ -37,16 +37,16 @@ export class CartService {
 
   public addOrRemoveCart(product: Product): void {
     const { id } = product;
-    const currentsFav = this.getProductsCart();
-    const found = !!currentsFav.find((fav: Product) => fav.id === id);
+    const prods = this.getProductsCart();
+    const found = !!prods.find((fav: Product) => fav.id === id);
     found ? this.removeFromCart(id) : this.addToCart(product);
   }
 
   private addToCart(prodcuts: Product): void {
     try {
-      const currentsFav = this.getProductsCart();
-      localStorage.setItem(MY_CART, JSON.stringify([...currentsFav, prodcuts]));
-      this.prodcutsSubject.next([...currentsFav, prodcuts]);
+      const prods = this.getProductsCart();
+      localStorage.setItem(MY_CART, JSON.stringify([...prods, prodcuts]));
+      this.prodcutsSubject.next([...prods, prodcuts]);
       this._snackBar.open('Added to cart!', 'Close', {
         duration: 3000,
       });
@@ -59,8 +59,8 @@ export class CartService {
 
   private removeFromCart(id: number): void {
     try {
-      const currentsFav = this.getProductsCart();
-      const prodcuts = currentsFav.filter((item) => item.id !== id);
+      const prods = this.getProductsCart();
+      const prodcuts = prods.filter((item) => item.id !== id);
       localStorage.setItem(MY_CART, JSON.stringify([...prodcuts]));
       this.prodcutsSubject.next([...prodcuts]);
       this._snackBar.open('Deleted to cart!', 'Close', {
@@ -75,9 +75,9 @@ export class CartService {
 
   getProductsCart(): any {
     try {
-      const charactersFav = JSON.parse(localStorage.getItem(MY_CART));
-      this.prodcutsSubject.next(charactersFav);
-      return charactersFav;
+      const prods = JSON.parse(localStorage.getItem(MY_CART));
+      this.prodcutsSubject.next(prods);
+      return prods;
     } catch (error) {
       this._snackBar.open('Error!', 'Close', {
         duration: 3000,

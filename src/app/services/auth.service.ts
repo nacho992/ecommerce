@@ -54,6 +54,9 @@ export class AuthService {
 
   async resetPassword(email: string): Promise<void> {
     try {
+      this._snackBar.open('Check your email ' + email + ' !', 'Close', {
+        duration: 3000,
+      });
       return this.afAuth.sendPasswordResetEmail(email);
     } catch (error) {
       this._snackBar.open('Error!', 'Close', {

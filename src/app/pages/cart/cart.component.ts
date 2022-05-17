@@ -7,7 +7,7 @@ import { ImageFormatterComponent } from 'src/app/components/image-formatter/imag
 import { User } from 'src/app/models/User.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
-import { products } from '../../../const';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-cart',
@@ -41,6 +41,7 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private authService: AuthService,
+    private productService: ProductService,
     private router: Router
   ) {}
 
@@ -51,11 +52,17 @@ export class CartComponent implements OnInit {
   }
 
   public onDeleteButtonClick(params) {
-    products
-      .filter((prod) => prod.id == params.data.id)
-      .forEach((p) => (p.inCart = false));
+    this.upDateProductsList(params.data.id)
     this.cartService.addOrRemoveCart(params.data);
     this.rowData = this.rowData.filter((p) => p.id !== params.data.id);
+  }
+
+  private upDateProductsList(id){
+    this.productService.prodcuts$.subscribe(res => {
+      res
+      .filter((prod) => prod.id == id)
+      .forEach((p) => (p.inCart = false));
+    })
   }
 
   public getSubtotal(): number {

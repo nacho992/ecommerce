@@ -2,9 +2,22 @@
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 /* Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-* {
-  font-family: "Poppins", sans-serif;
+@import '~@angular/material/theming';
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$custom-typography: mat-typography-config(
+  $font-family: 'Poppins, sans-serif',
+  $headline: mat-typography-level(16px, 24px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+@include mat-core($custom-typography);
+@include mat-base-typography($custom-typography);
+@include angular-material-typography($custom-typography);
+$config: mat-typography-config();
+.unicorn-header {
+  font-size: mat-font-size($config, headline);
+  font-family: mat-font-family($config);
 }
 
 html,
@@ -129,5 +142,23 @@ body {
   -webkit-animation-delay: 1s;
   -moz-animation-delay: 1s;
   animation-delay: 1s;
+}
+.underlineHover:after {
+  display: block;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background-color: #7b1fa2;
+  content: "";
+  transition: width 0.2s;
+}
+
+.underlineHover:hover {
+  color: #0d0d0d;
+}
+
+.underlineHover:hover:after {
+  width: 100%;
 }
 /* END ANIMATIONS */

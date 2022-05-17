@@ -18,17 +18,20 @@ img {
     border-radius: 10px;
     box-shadow: 1px 4px 22px -8px #0004;
     display: flex;
+    flex-wrap: wrap;
     overflow: hidden;
   }
   .login_box .left {
     width: 41%;
-    height: 100%;
+    height: 92%;
     padding: 25px 25px;
+    flex: 1 1 120px;
   }
   .login_box .right {
     width: 59%;
     padding: 25px;
-    height: 100%;
+    height: 94%;
+    flex: 1 1 200px;
   }
   .left .top_link a {
     color: #452a5a;

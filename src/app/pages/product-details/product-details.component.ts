@@ -2,31 +2,35 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/Product.interface';
 import { CartService } from 'src/app/services/cart.service';
-import { products } from "../../../const";
-
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss']
+  styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent implements OnInit {
+  public product: Product;
 
-  public product: Product
-
-  constructor(private route: ActivatedRoute, private cartService: CartService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private cartService: CartService,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.pipe().subscribe( (params) => {
+    this.route.params.pipe().subscribe((params) => {
       const id = params['id'];
-      this.product = products.filter(p => p.id == id).pop()
-    } )
+      this.productService.prodcuts$.subscribe((res) => {
+        this.product = res.filter((p) => p.id == id).pop();
+      });
+    });
   }
 
-  public addCart(){
+  public addCart() {
     const inCart = this.product.inCart;
     this.product.inCart = !inCart;
-    this.cartService.addOrRemoveCart(this.product)
+    this.cartService.addOrRemoveCart(this.product);
   }
 
   public getNameButton(): string {

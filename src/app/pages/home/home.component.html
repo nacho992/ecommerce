@@ -1,8 +1,10 @@
 <app-carousel></app-carousel>
 
-<section class="wrapper">
-  <h1 *ngIf="!(user$| async)">Offers</h1>
-  <h1 *ngIf="user$ | async as user">Hello! {{user.email}} look at our offers</h1>
+<section class="wrapper mat-typography">
+  <h1 *ngIf="!(user$ | async)">Offers</h1>
+  <h1 *ngIf="user$ | async as user">
+    Hello! {{ user.email }} look at our offers
+  </h1>
   <div class="grid" infinite-scroll>
     <article *ngFor="let prod of productsList">
       <app-product-card [product]="prod"></app-product-card>

@@ -1,12 +1,3 @@
-
-/* @font-face {
-  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/TESLA.ttf');
-  font-family: Tesla;
-}
-@font-face {
-  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/PFDinTextCompPro-Medium.ttf');
-  font-family: pfd-medium;
-} */
 $RT: 1.5s; // .REMOVING TRANSITION TIME
 $RTDELAY: 0.3s; // .REMOVING TRANSITION DELAY (text hiding)
 $BG-T: 1s; // .ACTIVE BACKGROUND ZOOM TRANSITION
@@ -58,6 +49,8 @@ input[type=radio] {
 .slider {
   position: relative;
   height: 55%;
+  margin: auto;
+  max-width: 1200px;
   
   &--control {
     z-index: 50;
@@ -126,6 +119,8 @@ input[type=radio] {
           width: 500%;
           height: 100%;
           background-image: url('https://previews.123rf.com/images/gmast3r/gmast3r1608/gmast3r160800727/61288939-compras-en-l%C3%ADnea-banner-ecommerce-concept-flat-vector-illustration.jpg');
+          
+
         }
         
         &.part-1 {
@@ -236,7 +231,7 @@ input[type=radio] {
           @include bgPart;
           width: 300%;
           height: 200%;
-          background-image: url('https://s3images.coroflot.com/user_files/individual_files/large_601412_pefdzgritogapshe0a4l4n0tb.jpg');
+          background-image: url('https://static.vecteezy.com/system/resources/previews/000/669/988/non_2x/vector-shopping-online-banner.jpg');
         }
         
         &.left {
@@ -287,7 +282,7 @@ input[type=radio] {
           @include bgPart;
           width: 200%;
           height: 200%;
-          background-image: url('https://static.vecteezy.com/system/resources/thumbnails/003/240/364/small/shopping-online-on-phone-paper-art-modern-pink-background-gifts-box-free-vector.jpg');
+          background-image: url('https://chandrkum.co/public/images/olbnrs.jpg');
         }
         
         &.top {
