@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { User } from 'src/app/models/User.interface';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  providers: [AuthService]
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authSvc: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -62,9 +66,25 @@ export class RegisterComponent implements OnInit {
     ],
   }];
 
-  submit() {
-    if (this.form.valid) {
-      alert(JSON.stringify(this.model));
+  async submit() {
+    const { email, password } = this.form.value;
+    try {
+      const user = await this.authSvc.register(email, password);
+      if (user) {
+        this.checkUserIsVerified(user);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  private checkUserIsVerified(user: User) {
+    if (user && user.emailVerified) {
+      this.router.navigate(['/home']);
+    } else if (user) {
+      this.router.navigate(['/verification-email']);
+    } else {
+      this.router.navigate(['/register']);
     }
   }
 }

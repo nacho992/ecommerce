@@ -1,0 +1,25 @@
+<section class="wrapper">
+  <mat-card *ngIf="user$ | async as user; else loading">
+    <div >
+      <h3 >Thank you for Registering!</h3>
+      <div >
+        <p >
+          We have sent a confirmation email to <strong>{{ user?.email }}</strong>
+        </p>
+        <p >
+          Please check your email and click on the link to verify your email
+          address.
+        </p>
+      </div>
+      <div >
+        <button  mat-raised-button color="primary" (click)="onSendEmail()">
+          Resend verification email
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</section>
+  
+  <ng-template #loading>
+    Loading....
+  </ng-template>

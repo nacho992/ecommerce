@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from '../models/Product.interface';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+
 const MY_CART = 'myCart';
 @Injectable({
   providedIn: 'root',
@@ -10,11 +13,29 @@ export class CartService {
   private prodcutsSubject = new BehaviorSubject<Product[]>(null);
   prodcuts$ = this.prodcutsSubject.asObservable();
 
-  constructor(private _snackBar: MatSnackBar) {
+  constructor(
+    private _snackBar: MatSnackBar,
+    private firestore: AngularFirestore,
+    private router: Router
+  ) {
     this.initialStorage();
   }
 
-  addOrRemoveCart(product: Product): void {
+  public async saveOrder(order: any): Promise<any> {
+    try {
+      this._snackBar.open('Order send!', 'Close', {
+        duration: 3000,
+      });
+      this.router.navigateByUrl('home')
+      return this.firestore.collection('Orders').add(order);
+    } catch (error) {
+      this._snackBar.open('Error!', 'Close', {
+        duration: 3000,
+      });
+    }
+  }
+
+  public addOrRemoveCart(product: Product): void {
     const { id } = product;
     const currentsFav = this.getProductsCart();
     const found = !!currentsFav.find((fav: Product) => fav.id === id);

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ecommerce-challenge-8a66d": {
+      "hosting": {
+        "ecommerce-challenge": [
+          "ecommerce-challenge-8a66d"
+        ]
+      }
+    }
+  }
+}

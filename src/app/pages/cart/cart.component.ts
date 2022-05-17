@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ColDef } from 'ag-grid-community';
+import { Observable } from 'rxjs';
 import { ButtonRendererComponent } from 'src/app/components/button-renderer/button-renderer.component';
 import { ImageFormatterComponent } from 'src/app/components/image-formatter/image-formatter.component';
+import { User } from 'src/app/models/User.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { products } from '../../../const';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -30,9 +35,14 @@ export class CartComponent implements OnInit {
     },
   ];
 
+  shipping: number = 5;
   rowData = [];
-
-  constructor(private cartService: CartService) {}
+  public user$: Observable<User> = this.authService.afAuth.user;
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.cartService.prodcuts$.subscribe((res) => {
@@ -48,11 +58,29 @@ export class CartComponent implements OnInit {
     this.rowData = this.rowData.filter((p) => p.id !== params.data.id);
   }
 
-  public getSubtotal(): number{
-    return this.rowData.map(prod => prod.price * prod.count).reduce((prev, curr) => prev + curr, 0);
+  public getSubtotal(): number {
+    return this.rowData
+      .map((prod) => prod.price * prod.count)
+      .reduce((prev, curr) => prev + curr, 0);
   }
 
-  public onCellValueChanged(event: any){
+  public onCellValueChanged(event: any) {
     this.getSubtotal();
+  }
+
+  public sendOrder() {
+    this.user$.subscribe((res) => {
+      if (res) {
+        const cart = {
+          listProducts: this.rowData,
+          completed: false,
+          cart_id: res.email,
+          totalMount: this.getSubtotal() + this.shipping
+        };
+        this.cartService.saveOrder(cart);
+      } else {
+        this.router.navigateByUrl('login');
+      }
+    });
   }
 }

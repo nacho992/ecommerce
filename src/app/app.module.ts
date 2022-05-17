@@ -38,6 +38,12 @@ import {
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { SendEmailComponent } from './pages/auth/send-email/send-email.component';
+
 function EmailValidator(control: FormControl): ValidationErrors {
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(control.value)
     ? null
@@ -51,7 +57,6 @@ function EmailValidatorMessage(err, field: FormlyFieldConfig) {
 export function fieldMatchValidator(control: AbstractControl) {
   const { password, passwordConfirm } = control.value;
 
-  // avoid displaying the message error when values are empty
   if (!passwordConfirm || !password) {
     return null;
   }
@@ -77,8 +82,12 @@ MatToolbarModule;
     ButtonRendererComponent,
     LoginComponent,
     RegisterComponent,
+    SendEmailComponent,
   ],
   imports: [
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
     MatFormFieldModule,
     MatListModule,
     MatSidenavModule,
