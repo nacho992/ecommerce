@@ -16,6 +16,11 @@ export class RegisterComponent implements OnInit {
   constructor(private authSvc: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.authSvc.user$.subscribe(res => {
+      if (res) {
+        this.router.navigateByUrl('home')
+      }
+    })
   }
 
   form = new FormGroup({});

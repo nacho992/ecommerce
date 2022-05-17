@@ -13,7 +13,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   constructor(private authSvc: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authSvc.user$.subscribe(res => {
+      if (res) {
+        this.router.navigateByUrl('home')
+      }
+    })
+  }
 
   form = new FormGroup({});
   model = { email: 'email@gmail.com', password: '******' };

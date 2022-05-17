@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   public user$: Observable<User>;
-  public logedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+  private logedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
   constructor(
