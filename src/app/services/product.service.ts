@@ -19,7 +19,7 @@ export class ProductService {
 
   public async getProducts(): Promise<any> {
     try {
-      this.firestore.collection('products').get().subscribe(res => {
+      await this.firestore.collection('products').get().subscribe(res => {
         const data = res.docs.map(doc => doc.data());
         this.prodcutsListSubject.next(data)
         return data

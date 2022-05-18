@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { User } from 'src/app/models/User.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { Store } from '@ngrx/store';
+import { loginGoogle, loginUser } from 'src/app/reducers/actions/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +12,18 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private authSvc: AuthService, private router: Router) {}
+  constructor(
+    private authSvc: AuthService,
+    private router: Router,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
-    this.authSvc.user$.subscribe(res => {
+    this.authSvc.user$.subscribe((res) => {
       if (res) {
-        this.router.navigateByUrl('home')
+        this.router.navigateByUrl('home');
       }
-    })
+    });
   }
 
   form = new FormGroup({});
@@ -56,40 +61,19 @@ export class LoginComponent implements OnInit {
   }
 
   public async onGoogleLogin() {
-    try {
-      const user = await this.authSvc.loginGoogle();
-      if (user) {
-        this.checkUserIsVerified(user);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    await this.store.dispatch(loginGoogle())
   }
 
-  public forgotPass(){
-    this.authSvc.resetPassword(this.form.get('email').value)
-    this.router.navigateByUrl('home')
+  public forgotPass() {
+    this.authSvc.resetPassword(this.form.get('email').value);
+    this.router.navigateByUrl('home');
   }
 
   async onLogin() {
     const { email, password } = this.form.value;
-    try {
-      const user = await this.authSvc.login(email, password);
-      if (user) {
-        this.checkUserIsVerified(user);
-      }
-    } catch (error) {
-      console.log(error);
+    if (this.form.valid) {
+      await this.store.dispatch(loginUser({ email, password }));
     }
   }
 
-  private checkUserIsVerified(user: User) {
-    if (user && user.emailVerified) {
-      this.router.navigate(['/home']);
-    } else if (user) {
-      this.router.navigate(['/verification-email']);
-    } else {
-      this.router.navigate(['/register']);
-    }
-  }
 }

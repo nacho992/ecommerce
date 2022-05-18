@@ -41,7 +41,7 @@ export class AuthService {
       const { user } = await this.afAuth.signInWithPopup(
         new auth.auth.GoogleAuthProvider()
       );
-      this.updateUserData(user);
+      this.updateUserData(user.providerData[0]);
       this.logedIn.next(true);
       return user;
     } catch (error) {
@@ -76,9 +76,9 @@ export class AuthService {
         email,
         password
       );
-      this.updateUserData(user);
       this.logedIn.next(true);
-      return user;
+      this.updateUserData(user);
+      return user.providerData[0];
     } catch (error) {
       this._snackBar.open('Error!', 'Close', {
         duration: 3000,
@@ -95,7 +95,7 @@ export class AuthService {
         password
       );
       await this.sendVerificationEmail();
-      return user;
+      return user.providerData[0];
     } catch (error) {
       this._snackBar.open('Error!', 'Close', {
         duration: 3000,
@@ -127,7 +127,6 @@ export class AuthService {
       displayName: user.displayName,
       photoURL: user.photoURL,
     };
-
     return userRef.set(data, { merge: true });
   }
 }

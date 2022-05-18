@@ -43,6 +43,12 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SendEmailComponent } from './pages/auth/send-email/send-email.component';
+import { StoreModule } from '@ngrx/store';
+import { REDUCERS } from "./reducers/app.state";
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from "./reducers/effects/auth.effects";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+
 
 function EmailValidator(control: FormControl): ValidationErrors {
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(control.value)
@@ -54,7 +60,7 @@ function EmailValidatorMessage(err, field: FormlyFieldConfig) {
   return `"${field.formControl.value}" is not a valid Email Address`;
 }
 
-export function fieldMatchValidator(control: AbstractControl) {
+function fieldMatchValidator(control: AbstractControl) {
   const { password, passwordConfirm } = control.value;
 
   if (!passwordConfirm || !password) {
@@ -113,6 +119,9 @@ MatToolbarModule;
       validationMessages: [{ name: 'email', message: EmailValidatorMessage }],
     }),
     FormlyMaterialModule,
+    StoreModule.forRoot(REDUCERS),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({ name: "test redux" }),
   ],
   providers: [],
   bootstrap: [AppComponent],
