@@ -5,5 +5,12 @@ export interface User {
   emailVerified?: boolean;
   password?: string;
   photoURL?: string;
+  stsTokenManager?: StsTokenManager;
 }
 
+interface StsTokenManager {
+  apiKey?:         string;
+  refreshToken?:   string;
+  accessToken?:    string;
+  expirationTime?: number;
+}

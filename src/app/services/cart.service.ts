@@ -23,11 +23,12 @@ export class CartService {
 
   public async saveOrder(order: any): Promise<any> {
     try {
+      this.firestore.collection('Orders').add(order);
       this._snackBar.open('Order send!', 'Close', {
         duration: 3000,
       });
       this.router.navigateByUrl('home')
-      return this.firestore.collection('Orders').add(order);
+      return 
     } catch (error) {
       this._snackBar.open('Error!', 'Close', {
         duration: 3000,

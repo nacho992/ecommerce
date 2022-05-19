@@ -3,7 +3,7 @@
 <section class="wrapper mat-typography">
   <h1 *ngIf="!(user$ | async)">Offers</h1>
   <h1 *ngIf="user$ | async as user">
-    Hello! {{ user }} look at our offers
+    Hello! {{ user.email }} look at our offers
   </h1>
   <div class="grid" infinite-scroll>
     <article *ngFor="let prod of productsList">

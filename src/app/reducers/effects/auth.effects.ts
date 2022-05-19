@@ -53,6 +53,9 @@ export class AuthEffects {
           .login(action.email, action.password)
           .then((user) => {
             this.checkUserIsVerified(user);
+            if (!user) {
+              return loginError()
+            }
             return logedUser({
               user: {
                 success: true,

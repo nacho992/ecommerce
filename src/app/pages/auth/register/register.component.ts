@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authSvc.user$.subscribe((res) => {
+    this.authSvc.isLogged.subscribe((res) => {
       if (res) {
         this.router.navigateByUrl('home');
       }

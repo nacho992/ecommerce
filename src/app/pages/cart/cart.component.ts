@@ -52,17 +52,15 @@ export class CartComponent implements OnInit {
   }
 
   public onDeleteButtonClick(params) {
-    this.upDateProductsList(params.data.id)
+    this.upDateProductsList(params.data.id);
     this.cartService.addOrRemoveCart(params.data);
     this.rowData = this.rowData.filter((p) => p.id !== params.data.id);
   }
 
-  private upDateProductsList(id){
-    this.productService.prodcuts$.subscribe(res => {
-      res
-      .filter((prod) => prod.id == id)
-      .forEach((p) => (p.inCart = false));
-    })
+  private upDateProductsList(id) {
+    this.productService.prodcuts$.subscribe((res) => {
+      res.filter((prod) => prod.id == id).forEach((p) => (p.inCart = false));
+    });
   }
 
   public getSubtotal(): number {
@@ -82,7 +80,7 @@ export class CartComponent implements OnInit {
           listProducts: this.rowData,
           completed: false,
           cart_id: res.email,
-          totalMount: this.getSubtotal() + this.shipping
+          totalMount: this.getSubtotal() + this.shipping,
         };
         this.cartService.saveOrder(cart);
       } else {

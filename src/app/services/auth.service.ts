@@ -41,9 +41,14 @@ export class AuthService {
       const { user } = await this.afAuth.signInWithPopup(
         new auth.auth.GoogleAuthProvider()
       );
-      this.updateUserData(user.providerData[0]);
+      this.updateUserData(user);
       this.logedIn.next(true);
-      return user;
+      return {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        emailVerified: user.emailVerified,
+      };
     } catch (error) {
       this._snackBar.open('Error!', 'Close', {
         duration: 3000,
@@ -78,7 +83,12 @@ export class AuthService {
       );
       this.logedIn.next(true);
       this.updateUserData(user);
-      return user.providerData[0];
+      return {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        emailVerified: user.emailVerified,
+      };
     } catch (error) {
       this._snackBar.open('Error!', 'Close', {
         duration: 3000,
@@ -95,7 +105,12 @@ export class AuthService {
         password
       );
       await this.sendVerificationEmail();
-      return user.providerData[0];
+      return {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        emailVerified: user.emailVerified,
+      };
     } catch (error) {
       this._snackBar.open('Error!', 'Close', {
         duration: 3000,
@@ -104,7 +119,7 @@ export class AuthService {
     }
   }
 
-  async logout(): Promise<void> {
+  public async logout(): Promise<void> {
     try {
       await this.afAuth.signOut();
       this.logedIn.next(false);

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/models/User.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { Store } from '@ngrx/store';
@@ -15,17 +13,20 @@ import { selectUserData } from "src/app/reducers/selector/auth.selectors";
   styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent implements OnInit {
+  userLoged$: Observable<any>;
   user$: Observable<any>;
   isLogged: boolean
   count: number = 0;
 
   constructor(
     private cartService: CartService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private authService: AuthService
 
   ) {
-    this.user$ = this.store.select(selectUserData);
-    this.user$.subscribe(res => {            
+    this.userLoged$ = this.store.select(selectUserData);
+    this.user$ = this.authService.afAuth.user;
+    this.userLoged$.subscribe(res => {            
       if(res != undefined){
         this.isLogged = true;
       }
