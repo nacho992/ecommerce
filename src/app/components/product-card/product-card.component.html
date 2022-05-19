@@ -15,7 +15,7 @@
   </mat-card-content>
 
   <div *ngIf="product.inCart" class="in-cart">
-    <button>
+    <button  (click)="addCart()">
       <img as="image" src="../../../assets/addCart.png" alt="add" />
     </button>
   </div>
