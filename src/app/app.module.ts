@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -17,17 +17,17 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { CarouselComponent } from './components/carousel/carousel.component';
-import { HomeComponent } from './pages/home/home.component';
-import { CartComponent } from './pages/cart/cart.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
-import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { CarouselComponent } from './public/components/carousel/carousel.component';
+import { HomeComponent } from './public/pages/home/home.component';
+import { CartComponent } from './public/pages/cart/cart.component';
+import { ProductCardComponent } from './public/components/product-card/product-card.component';
+import { ProductDetailsComponent } from './public/pages/product-details/product-details.component';
 
 import { AgGridModule } from 'ag-grid-angular';
-import { ImageFormatterComponent } from './components/image-formatter/image-formatter.component';
-import { ButtonRendererComponent } from './components/button-renderer/button-renderer.component';
-import { LoginComponent } from './pages/auth/login/login.component';
-import { RegisterComponent } from './pages/auth/register/register.component';
+import { ImageFormatterComponent } from './public/components/image-formatter/image-formatter.component';
+import { ButtonRendererComponent } from './public/components/button-renderer/button-renderer.component';
+import { LoginComponent } from './public/pages/auth/login/login.component';
+import { RegisterComponent } from './public/pages/auth/register/register.component';
 
 import {
   AbstractControl,
@@ -42,12 +42,13 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { SendEmailComponent } from './pages/auth/send-email/send-email.component';
+import { SendEmailComponent } from './public/pages/auth/send-email/send-email.component';
 import { StoreModule } from '@ngrx/store';
 import { REDUCERS } from "./reducers/app.state";
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from "./reducers/effects/auth.effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { HttpClientModule } from '@angular/common/http';
 
 
 function EmailValidator(control: FormControl): ValidationErrors {
@@ -109,6 +110,7 @@ MatToolbarModule;
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FormlyModule.forRoot({
       extras: { lazyRender: true },
       validators: [

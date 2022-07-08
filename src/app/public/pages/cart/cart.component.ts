@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ColDef } from 'ag-grid-community';
 import { Observable } from 'rxjs';
-import { ButtonRendererComponent } from 'src/app/components/button-renderer/button-renderer.component';
-import { ImageFormatterComponent } from 'src/app/components/image-formatter/image-formatter.component';
-import { User } from 'src/app/models/User.interface';
-import { AuthService } from 'src/app/services/auth.service';
-import { CartService } from 'src/app/services/cart.service';
-import { ProductService } from 'src/app/services/product.service';
+import { ButtonRendererComponent } from 'src/app/public/components/button-renderer/button-renderer.component';
+import { ImageFormatterComponent } from 'src/app/public/components/image-formatter/image-formatter.component';
+import { User } from 'src/app/shared/models/User.interface';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { CartService } from 'src/app/public/services/cart.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 
 @Component({
   selector: 'app-cart',

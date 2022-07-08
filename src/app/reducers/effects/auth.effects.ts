@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { forkJoin, from, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import {
   map,
   mergeMap,
@@ -24,8 +24,8 @@ import {
   registerUser,
 } from '../actions/auth.actions';
 
-import { AuthService } from '../../services/auth.service';
-import { User } from 'src/app/models/User.interface';
+import { AuthService } from '../../shared/services/auth.service';
+import { User } from 'src/app/shared/models/User.interface';
 
 @Injectable()
 export class AuthEffects {

@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/models/User.interface';
-import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/shared/models/User.interface';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-send-email',

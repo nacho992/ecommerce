@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from 'src/app/models/Product.interface';
-import { AuthService } from 'src/app/services/auth.service';
-import { ProductService } from 'src/app/services/product.service';
-import { selectUserName } from 'src/app/reducers/selector/auth.selectors';
+import { Product } from 'src/app/shared/models/Product.interface';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { ProductService } from 'src/app/shared/services/product.service';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/reducers/app.state';
-import { User } from 'src/app/models/User.interface';
+import { User } from 'src/app/shared/models/User.interface';
 
 @Component({
   selector: 'app-home',

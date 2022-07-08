@@ -2,14 +2,14 @@
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 /* Fonts */
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
 // Define a custom typography config that overrides the font-family as well as the
 // `headlines` and `body-1` levels.
 $custom-typography: mat-typography-config(
-  $font-family: 'Poppins, sans-serif',
+  $font-family: "Poppins, sans-serif",
   $headline: mat-typography-level(16px, 24px, 700),
-  $body-1: mat-typography-level(16px, 24px, 500)
+  $body-1: mat-typography-level(16px, 24px, 500),
 );
 @include mat-core($custom-typography);
 @include mat-base-typography($custom-typography);

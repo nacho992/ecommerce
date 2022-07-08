@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
-import { CartService } from 'src/app/services/cart.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { CartService } from 'src/app/public/services/cart.service';
 import { Store } from '@ngrx/store';
 import { logOut } from 'src/app/reducers/actions/auth.actions';
 import { AppState } from 'src/app/reducers/app.state';
@@ -26,7 +26,7 @@ export class ToolbarComponent implements OnInit {
   ) {
     this.userLoged$ = this.store.select(selectUserData);
     this.user$ = this.authService.afAuth.user;
-    this.userLoged$.subscribe(res => {            
+    this.userLoged$.subscribe(res => {
       if(res != undefined){
         this.isLogged = true;
       }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Product } from '../models/Product.interface';
+import { Product } from '../../shared/models/Product.interface';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
@@ -28,7 +28,7 @@ export class CartService {
         duration: 3000,
       });
       this.router.navigateByUrl('home')
-      return 
+      return
     } catch (error) {
       this._snackBar.open('Error!', 'Close', {
         duration: 3000,

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +14,8 @@ export class ProductService {
 
   constructor(
     private _snackBar: MatSnackBar,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private http: HttpClient
   ) {
     this.getProducts();
   }
@@ -20,7 +23,11 @@ export class ProductService {
   public async getProducts(): Promise<any> {
     try {
       await this.firestore.collection('products').get().subscribe(res => {
-        const data = res.docs.map(doc => doc.data());
+        var data = res.docs.map(doc => doc.data());
+        this.getProductsAPI().subscribe(res => {
+          data = [...data, ...res];
+          this.prodcutsListSubject.next(data)
+        },err => {})
         this.prodcutsListSubject.next(data)
         return data
       });
@@ -29,6 +36,10 @@ export class ProductService {
         duration: 3000,
       });
     }
+  }
+
+  private getProductsAPI(): Observable<any[]>{
+    return this.http.get<any[]>(`${environment.apiURL}`)
   }
 
 }

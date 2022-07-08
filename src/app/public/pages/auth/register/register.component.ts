@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { User } from 'src/app/models/User.interface';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { Store } from '@ngrx/store';
 import { registerUser } from 'src/app/reducers/actions/auth.actions';
 

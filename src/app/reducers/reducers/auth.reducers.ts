@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { UserState } from "../../models/UserState.interface";
+import { UserState } from "../../shared/models/UserState.interface";
 import * as actions from "../actions/auth.actions";
 
 export const initialState: UserState = { success: false, user: {} };
@@ -21,7 +21,7 @@ export const loginReducer = createReducer(
         return {...state}
     }),
     on(actions.logedGoogle,  (state, { user }) => {
-        return  state = user; 
+        return  state = user;
     }),
   );
 

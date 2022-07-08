@@ -1,7 +1,7 @@
 import { ActionReducer, ActionReducerMap, MetaReducer } from "@ngrx/store";
 import { loginReducer, registerReducer } from "./reducers/auth.reducers";
 import { logOut } from "./actions/auth.actions";
-import { UserState } from "../models/UserState.interface";
+import { UserState } from "../shared//models/UserState.interface";
 
 export interface AppState {
   userLogin: UserState;

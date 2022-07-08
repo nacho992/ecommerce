@@ -8,12 +8,12 @@ img {
   position: relative;
 }
 .login_box {
-  max-width: 1250px;
-  height: 600px;
+  max-width: 1000px;
+  margin: auto;
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 8%;
+  left: 8%;
+  right: 8%;
   background: linear-gradient(-45deg, #ddd7fb, #cbacdb);
   border-radius: 10px;
   box-shadow: 1px 4px 22px -8px #0004;
@@ -28,9 +28,10 @@ img {
   flex: 1 1 120px;
 }
 .login_box .right {
-  width: 59%;
+  /*   width: 59%;
   padding: 25px;
-  height: 100%;
+  height: 100%; */
+  padding: 25px;
   flex: 1 1 200px;
 }
 .left .top_link a {
@@ -49,7 +50,7 @@ img {
   width: 73%;
   margin: auto;
 }
-.left h3{
+.left h3 {
   text-align: center;
   margin-top: 55px;
 }
@@ -80,7 +81,7 @@ img {
   -webkit-box-shadow: 0px 9px 15px -11px rgba(88, 54, 114, 1);
   -moz-box-shadow: 0px 9px 15px -11px rgba(88, 54, 114, 1);
   box-shadow: 0px 9px 15px -11px rgba(88, 54, 114, 1);
-  img{
+  img {
     width: 20px;
     margin: -5px 5px -5px 0px;
   }
@@ -98,15 +99,16 @@ img {
 }
 
 .right .right-text {
-  height: 100%;
+  /* height: 100%;
   position: relative;
-  transform: translate(0%, 28%);
+  transform: translate(0%, 28%); */
+  margin-top: 40px;
   text-align: center;
-  span{
+  span {
     margin-bottom: 5px;
   }
 }
-.right-text h2 h3 span  {
+.right-text h2 h3 span {
   display: block;
   width: 100%;
   text-align: center;
@@ -134,10 +136,4 @@ img {
   width: 28px;
   padding-right: 7px;
   margin-top: -3px;
-}
-#formFooter {
-  padding: 10px;
-  text-align: center;
-  -webkit-border-radius: 0 0 10px 10px;
-  border-radius: 0 0 10px 10px;
 }

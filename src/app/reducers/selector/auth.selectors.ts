@@ -1,5 +1,5 @@
 import { createSelector } from "@ngrx/store";
-import { UserState } from "../../models/UserState.interface";
+import { UserState } from "../../shared/models/UserState.interface";
 import { AppState } from "../app.state";
 
 export const selectUserFeature = (state: AppState) => state.userLogin;
